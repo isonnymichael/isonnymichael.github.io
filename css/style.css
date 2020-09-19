@@ -3307,3 +3307,7 @@ h6 {
 .home_banner_area .banner_inner {
   padding: 200px 0px 100px 0px; 
 }
+
+canvas{
+  display:block;
+}
