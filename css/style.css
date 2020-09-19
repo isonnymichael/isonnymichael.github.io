@@ -344,7 +344,6 @@ button:focus {
 ============================================================================================ */
 .home_banner_area {
   z-index: 1;
-  background: url(../img/banner/home-banner.png) no-repeat top center;
   background-position: center;
   background-size: cover; }
   .home_banner_area .banner_inner {
@@ -383,7 +382,7 @@ button:focus {
               display: none; } }
       .home_banner_area .banner_inner .banner_content h1 {
         margin-top: 20px;
-        font-size: 70px;
+        font-size: 54px;
         line-height: 60px;
         margin-bottom: 25px; }
         @media (max-width: 1024px) {
@@ -3080,7 +3079,7 @@ h6 {
 
   .home_banner_area .banner_inner {
     min-height: 300px;
-    padding-top: 200px;
+    padding-top: 500px;
     padding-bottom: 50px; }
 
   .home_banner_area .banner_inner .banner_content {
@@ -3304,3 +3303,7 @@ h6 {
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
+
+.home_banner_area .banner_inner {
+  padding: 200px 0px 100px 0px; 
+}
