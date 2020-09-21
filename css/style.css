@@ -3305,9 +3305,50 @@ h6 {
 /*# sourceMappingURL=style.css.map */
 
 .home_banner_area .banner_inner {
-  padding: 200px 0px 100px 0px; 
+  padding: 120px 0px 0px 0px; 
 }
 
 canvas{
   display:block;
+}
+
+footer{
+  padding: 10px 0px 10px 0px;
+  background-color: #000;
+  color: white;
+  text-align: center;
+}
+
+label{
+  color: #000;
+  font-weight: 500;
+}
+
+.contact-area{
+  margin-bottom: 30px;
+}
+
+.skills {
+  position: relative;
+}
+.skills .skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.skills .skill .skill-icon {
+  font-size: 100px;
+  transition: all 0.8s;
+  margin-bottom: 10px;
+}
+.skills .skill:hover .skill-icon {
+  transform: scale(1.2);
+}
+
+.caption{
+  color:white;
 }
