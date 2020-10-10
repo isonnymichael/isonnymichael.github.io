@@ -1,30 +1,6 @@
-/*----------------------------------------------------
-@File: Default Styles
-@Author: SPONDON IT
 
-This file contains the styling for the actual theme, this
-is the file you need to edit to change the look of the
-theme.
----------------------------------------------------- */
-/*=====================================================================
-@Template Name: HostHub Construction 
-@Developed By: Naim Lasker
-Author E-mail: naimlasker@gmail.com
-
-=====================================================================*/
-/*----------------------------------------------------*/
-/*font Variables*/
-/*Color Variables*/
-/*=================== fonts ====================*/
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500|Rubik:500,700");
-/*---------------------------------------------------- */
-/*----------------------------------------------------*/
-/* Medium Layout: 1280px */
-/* Tablet Layout: 768px */
-/* Mobile Layout: 320px */
-/* Wide Mobile Layout: 480px */
-/*---------------------------------------------------- */
-/*----------------------------------------------------*/
+
 body {
   line-height: 26px;
   font-size: 15px;
@@ -2458,10 +2434,10 @@ h6 {
 /* Start Barand Area css
 ============================================================================================ */
 .brand_area {
-  padding-bottom: 170px; }
+  padding-bottom: 0; }
   @media (max-width: 1199px) {
     .brand_area {
-      padding-bottom: 80px; } }
+      padding-bottom: 0; } }
 
 /* End Barand Area css
 ============================================================================================ */
