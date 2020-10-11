@@ -14,14 +14,16 @@ $(document).ready(function () {
         bounds = this.offset(),
         visible,
         deltas;
+
+    var marginHeader = 80;
     
     viewport.right = viewport.left + win.width();
-    viewport.bottom = viewport.top + win.height();
+    viewport.bottom = viewport.top + win.height() - marginHeader;
 
     if(!width || !height) return false;
 
     bounds.right = bounds.left + width;
-    bounds.bottom = bounds.top + height;
+    bounds.bottom = bounds.top + height - marginHeader;
 
     visible = (
       !(viewport.right < bounds.left || 
