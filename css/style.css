@@ -3328,3 +3328,8 @@ label{
 .caption{
   color:white;
 }
+
+section {    
+  padding-top: 69px !important;
+  margin-bottom: -69px !important;
+}
