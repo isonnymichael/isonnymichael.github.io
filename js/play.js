@@ -12,12 +12,10 @@ var ScenePlay = new Phaser.Class({
 
     preload: function()
     {
-        // Fungsi dijalankan sekali sebelum game dimulai
         this.load.image('BG','assets/BG.png');
         this.load.image('FG','assets/FG.png');
         this.load.image('FG_Awal','assets/FG_Awal.png');
         this.load.image('Play','assets/Button_Play.png');
-        this.load.image('Title','assets/Title.png');
 
         this.load.image('Chara','assets/Chara.png');
         this.load.image('Peluru','assets/Peluru.png');
@@ -43,22 +41,14 @@ var ScenePlay = new Phaser.Class({
         this.tweens.add({
             targets: this.FG_Awal,
             ease: "Power1",
-            duration: 500,
-            y: 768/2 - 768
+            duration: 200,
+            alpha: 0
         });
 
         this.tweens.add({
             targets: this.BPlay,
             ease:'Back.easeIn',
-            duration: 750,
-            scaleX:0,
-            scaleY:0
-        });
-
-        this.tweens.add({
-            targets: this.Title,
-            ease:'Elastic',
-            duration: 750,
+            duration: 125,
             scaleX:0,
             scaleY:0
         });
@@ -79,24 +69,15 @@ var ScenePlay = new Phaser.Class({
     {
         this.tweens.add({
             targets: this.FG_Awal,
-            duration:750,
-            y: 768/2
+            ease: "Power1",
+            duration: 200,
+            alpha: 1
         });
 
         this.tweens.add({
             targets: this.BPlay,
             ease:'Back',
             duration:1000,
-            delay:1500,
-            scaleX:1,
-            scaleY:1
-        });
-
-        this.tweens.add({
-            targets: this.Title,
-            ease:'Elastic',
-            duration:1500,
-            delay:1000,
             scaleX:1,
             scaleY:1
         });
@@ -119,8 +100,6 @@ var ScenePlay = new Phaser.Class({
         }
 
         this.label_score.setText("Highscore : "+this.highscore);
-
-        this.STransisi.play({'delay':0.75});
         
     },
 
@@ -145,7 +124,6 @@ var ScenePlay = new Phaser.Class({
 
         if(!this.isGameRunning && gameObject == this.BPlay)
         {
-            this.STouch.play();
             this.startGame();
         }
     },
@@ -163,10 +141,6 @@ var ScenePlay = new Phaser.Class({
             duration: 750,
             y: this.chara.y + 200
         })
-
-        this.SClick[Math.floor((Math.random()*2))].play();
-
-        // ini tidak akan di eksekusi
     },
 
     startInputEvents: function()
@@ -184,7 +158,7 @@ var ScenePlay = new Phaser.Class({
     {
         this.time.delayedCall(0,this.startInputEvents,[],this);
 
-        this.panel_score = this.add.image(1366/2, 60, 'PanelNilai');
+        this.panel_score = this.add.image(1166, 60, 'PanelNilai');
         this.panel_score.setOrigin(0.5);    
         this.panel_score.setDepth(11);
         this.panel_score.setAlpha(0.8);
@@ -226,37 +200,14 @@ var ScenePlay = new Phaser.Class({
         this.BPlay = this.add.image(1366/2,768/2 + 75,'Play');
         this.BPlay.setDepth(10);
 
-        this.Title = this.add.image(1366/2, 200,'Title');
-        this.Title.setDepth(10);
-        
-        this.FG_Awal.y -= 768;
-
-        this.tweens.add({
-            targets: this.FG_Awal,
-            duration: 750,
-            y: 768/2
-        })
-
         this.BPlay.setScale(0);
 
         this.tweens.add({
             targets: this.BPlay,
             ease: 'Back',
             duration: 1000,
-            delay: 1500,
             scaleX: 1,
             scaleY: 1
-        });
-
-        this.Title.setScale(0);
-
-        this.tweens.add({
-            targets: this.Title,
-            ease: 'Elastic',
-            duration: 1500,
-            delay:1000,
-            scaleX:1,
-            scaleY:1
         });
 
         this.BPlay.setInteractive();
@@ -378,8 +329,6 @@ var ScenePlay = new Phaser.Class({
 
                     var myScene = this;
 
-                    this.SDead.play();
-
                     this.charaTweens = this.tweens.add({
                         targets: this.chara,
                         ease:'Power1',
@@ -398,8 +347,6 @@ var ScenePlay = new Phaser.Class({
                 this.isGameRunning = false;
 
                 var myScene = this;
-
-                this.SDead.play();
 
                 this.charaTweens = this.tweens.add({
                     targets: this.chara,
