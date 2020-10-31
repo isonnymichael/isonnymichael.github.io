@@ -26,41 +26,6 @@ var ScenePlay = new Phaser.Class({
 
         this.load.image('particle_blue','assets/particle_blue.png');
 
-        this.load.audio('ambience',[
-            'assets/audio/ambience.ogg',
-            'assets/audio/ambience.mp3',
-        ]);
-
-        this.load.audio('dead',[
-            'assets/audio/dead.ogg',
-            'assets/audio/dead.mp3',
-        ]);
-
-        this.load.audio('klik_1',[
-            'assets/audio/klik_1.ogg',
-            'assets/audio/klik_1.mp3',
-        ]);
-
-        this.load.audio('klik_2',[
-            'assets/audio/klik_2.ogg',
-            'assets/audio/klik_2.mp3',
-        ]);
-
-        this.load.audio('klik_3',[
-            'assets/audio/klik_3.ogg',
-            'assets/audio/klik_3.mp3',
-        ]);
-
-        this.load.audio('touch',[
-            'assets/audio/touch.ogg',
-            'assets/audio/touch.mp3',
-        ]);
-
-        this.load.audio('transisi_menu',[
-            'assets/audio/transisi_menu.ogg',
-            'assets/audio/transisi_menu.mp3',
-        ]);
-
         this.score = 0;
 
         this.isGameRunning = false;
@@ -105,8 +70,6 @@ var ScenePlay = new Phaser.Class({
         this.chara.setScale(1);
 
         this.trail.setVisible(true);
-
-        console.log(this.trail);
 
         this.score = 0;
         this.label_score.setText(this.score);
@@ -220,27 +183,6 @@ var ScenePlay = new Phaser.Class({
     create:function()
     {
         this.time.delayedCall(0,this.startInputEvents,[],this);
-
-        this.MAmbience = this.sound.add('ambience');
-        this.MAmbience.loop = true;
-        this.MAmbience.setVolume(0.35);
-        this.MAmbience.play();
-
-        this.SDead = this.sound.add('dead');
-        
-        this.SClick = [];
-        this.SClick.push(this.sound.add('klik_1'));
-        this.SClick.push(this.sound.add('klik_2'));
-        this.SClick.push(this.sound.add('klik_3'));
-
-        for (let i = 0; i < this.SClick.length; i++) {
-            this.SClick[i].setVolume(0.5);
-        }
-
-        this.STouch = this.sound.add('touch');
-        this.STransisi = this.sound.add('transisi_menu');
-
-        this.STransisi.play({'delay':0.75});
 
         this.panel_score = this.add.image(1366/2, 60, 'PanelNilai');
         this.panel_score.setOrigin(0.5);    
