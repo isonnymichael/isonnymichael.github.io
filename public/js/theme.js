@@ -27,9 +27,9 @@
 	function mailChimp() {
 		$('#mc_embed_signup').find('form').ajaxChimp();
 	}
-	mailChimp();
+	//mailChimp();
 
-	$('select').niceSelect();
+	//$('select').niceSelect();
 	/* ---------------------------------------------
             Isotope js Starts
          --------------------------------------------- */
