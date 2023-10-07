@@ -2443,10 +2443,10 @@ h6 {
 ============================================================================================ */
 /* Start Features Area css
 ============================================================================================ */
-.features_area {
+.projects_area {
   padding-bottom: 170px; }
   @media (max-width: 1199px) {
-    .features_area {
+    .projects_area {
       padding-bottom: 50px; } }
 
 .feature_item {
@@ -3331,5 +3331,4 @@ label{
 
 section {    
   padding-top: 69px !important;
-  margin-bottom: -69px !important;
 }

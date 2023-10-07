@@ -15,7 +15,7 @@ $(document).ready(function () {
         visible,
         deltas;
 
-    var marginHeader = 150;
+    var marginHeader = 100;
     
     viewport.right = viewport.left + win.width();
     viewport.bottom = viewport.top + win.height() - marginHeader;
