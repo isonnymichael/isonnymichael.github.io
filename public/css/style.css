@@ -354,6 +354,9 @@ button:focus {
           left: 23%;
           background: #000000; }
           @media (max-width: 575px) {
+            .home_banner_area .banner_inner {
+              padding: 0px 0px 0px 0px !important; 
+            }
             .home_banner_area .banner_inner .banner_content h3:after {
               display: none; } }
       .home_banner_area .banner_inner .banner_content h1 {
