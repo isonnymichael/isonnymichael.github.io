@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Project from '../components/Project.astro';
+import ProjectDetail from '../components/ProjectDetail.astro';
 
 const startCareer = 2019;
 const experience = new Date().getFullYear() - startCareer;
@@ -70,32 +71,19 @@ const experience = new Date().getFullYear() - startCareer;
 						</div>
 					</div>
 				</div>
-				<div class="row feature_inner">
-					<div class="col-lg-3 col-md-6">
-						<div class="feature_item h-100 shadow">
-							<img src="img/services/s1.png" alt="">
-							<h4>Programming Lessons/Training</h4>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">
-						<div class="feature_item h-100 shadow">
-							<img src="img/services/s2.png" alt="">
-							<h4>Game Development</h4>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">
-						<div class="feature_item h-100 shadow">
-							<img src="img/services/s3.png" alt="">
-							<h4>Web Development</h4>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">
-						<div class="feature_item h-100 shadow">
-							<img src="img/services/s4.png" alt="">
-							<h4>Mobile Development</h4>
-						</div>
-					</div>
+
+				<div class="row">
+
+					<Project title="Programming" />
+					<Project title="Programming & Panjang Isingya 5 baris loh kok gini" />
+					<Project title="Programming adh asdodhia adad adads" />
+
+					<Project title="Programming" />
+					<Project title="Programming" />
+					<Project title="Programming" />
+					
 				</div>
+
 			</div>
 		</section>
 		<!--================ End Projects Area =================-->
@@ -137,6 +125,8 @@ const experience = new Date().getFullYear() - startCareer;
 			</div>
 		</section>
 		<!--================ End Newsletter Area =================-->
+		
+		<ProjectDetail />
 	</main>
 </Layout>
 

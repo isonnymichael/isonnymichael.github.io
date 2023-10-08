@@ -2444,10 +2444,10 @@ h6 {
 /* Start Features Area css
 ============================================================================================ */
 .projects_area {
-  padding-bottom: 170px; }
+  padding-bottom: 0px; }
   @media (max-width: 1199px) {
     .projects_area {
-      padding-bottom: 50px; } }
+      padding-bottom: 0px; } }
 
 .feature_item {
   padding: 45px 25px;
