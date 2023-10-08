@@ -128,4 +128,47 @@ $("#gform").submit(function(e){
 	return false;
 });
 
+$(".project-card" ).hover(
+  function() {
+
+    $( this ).find('.project-detail').css({
+      "opacity":"1",
+      "transform": "translateY(0%)"
+    });
+
+  }, function() {
+
+    $( this ).find('.project-detail').css({
+      "opacity":"0",
+      "transform": "translateY(10%)"
+    });
+
+  }
+);
+
+$(".project-card").click(function(){
+
+  $("#project-detail-container").removeClass("d-none");
+  $("#project-detail").addClass("fadeInLeft");
+  $("body").css({
+    "overflow":"hidden"
+  });
+
+});
+
+
+$('#project-detail').click(function(event){
+  event.stopPropagation();
+});
+
+$("#project-detail-container").click(function(){
+
+  $("#project-detail-container").addClass("d-none");
+  $("#project-detail").removeClass("fadeInLeft");
+  $("body").css({
+    "overflow":""
+  });
+  
+});
+
 });

@@ -1,0 +1,77 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="col-12 col-sm-4">
+	<div class="project-card">
+		<img class="img-project" src="/img/portfolio/p1.jpg">
+		<div class="project-gradient"></div>
+		
+		<div class="project-detail">
+			<h4 class="text-white">{title}</h4>
+			<div>
+				<span class="stacks">PHP</span>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<style>
+	.project-card{
+		border-radius: 12px;
+		padding-top: 60%;
+		margin-bottom: 28px;
+		position: relative;
+		cursor: pointer;
+	}
+	@media (max-width: 668px) {
+    .project-card {
+      margin-bottom: 16px; } }
+
+	.project-gradient{
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	}
+	.project-gradient:hover{
+		background: linear-gradient(rgba(0, 0, 0, 0.1) 10%, rgba(0, 0, 0, 0.78) 80%);
+		opacity: 0.6;
+	}
+	.project-detail{
+		padding: 20px;
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		pointer-events: none;
+		opacity: 0;
+		transform: translateY(10%);
+		transition: opacity 300ms ease-in-out 0s, transform 300ms ease-in-out 0s;
+	}
+	.stacks{
+		background: rgb(105, 104, 105);
+		padding: 4px 10px;
+		border-radius: 50px;
+		text-transform: capitalize;
+		font-size: 11px;
+		margin-right: 6px;
+		color: rgb(255, 255, 255);
+		font-weight: 500;
+	}
+	.img-project{
+		position: absolute;
+		object-fit: cover;
+		width: 100% !important;
+		height: 100% !important;
+		left: 0px;
+		top: 0px;
+		border-radius: 12px;
+	}
+</style>
