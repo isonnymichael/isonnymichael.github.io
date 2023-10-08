@@ -81,42 +81,49 @@ $("#gform").submit(function(e){
     var form = $(this);
     var url = form.attr('action');
     Swal.fire({
-		title: 'Please Wait !',
-		html: 'sending . . .',
-		allowOutsideClick: false,
-		onBeforeOpen: () => {
-			Swal.showLoading()
-		},
-	});
+      title: 'Please Wait !',
+      html: 'sending . . .',
+      allowOutsideClick: false,
+      showCancelButton: false,
+      showConfirmButton: false,
+      onBeforeOpen: () => {
+        Swal.showLoading()
+      },
+	  });
 
-    $.ajax({
-		type: "POST",
-		url: url,
-		data: form.serialize(),
-		success: function(data)
-		{
-			$('#form-email').val('');
+    var templateParams = {
+      from_name: $('#form-name').val(),
+      from_email: $('#form-email').val(),
+      message: $('#form-message').val()
+  };
+
+    emailjs.send('service_arzpgbq', 'template_p205pcp', templateParams)
+    .then(function(response) {
+
+      $('#form-email').val('');
 			$('#form-name').val('');
 			$('#form-message').val('');
 
-			Swal.close();
+      Swal.close();
 
-			Swal.fire(
-			'Success',
-			'Your message was sent successfully!',
-			'success'
-			)
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) { 
-			Swal.close();
+      Swal.fire(
+        'Success',
+        'Your message was sent successfully!',
+        'success'
+      )
 
-			Swal.fire(
-			'Error',
-			'Your message was failed to sent ! ' + errorThrown,
-			'error'
-			)
-		} 
-	});
+    }, function(error) {
+      Swal.close();
+
+       console.log('FAILED...', error);
+
+       Swal.fire(
+        'Error',
+        'Your message was failed to sent ! ' + error,
+        'error'
+        )
+
+    });
 
 	return false;
 });
