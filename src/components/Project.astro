@@ -1,21 +1,40 @@
 ---
 interface Props {
 	title: string;
+	img: string;
+	about: string;
+	stacks: Array<string>;
+	website: string;
+	github: string;
 }
 
-const { title } = Astro.props;
+const { title, img, about, stacks, website, github } = Astro.props;
 ---
 
 <div class="col-12 col-sm-4">
-	<div class="project-card">
-		<img class="img-project" src="/img/portfolio/p1.jpg">
+	<div class="project-card shadow">
+		<img class="img-project" src={img}>
 		<div class="project-gradient"></div>
 		
 		<div class="project-detail">
-			<h4 class="text-white">{title}</h4>
-			<div>
-				<span class="stacks">PHP</span>
+			<h4 class="title-project text-white">{title}</h4>
+			<div class="d-flex flex-wrap">
+				{stacks.map((s) => (
+					<div>
+						<span class="stacks">{s}</span>
+					</div>
+				))}
 			</div>
+		</div>
+
+		<!-- Data Detail -->
+		<div class="container-data d-none">
+			<p class="about-data">{about}</p>
+			<p class="stacks-data">{stacks.map((s) => (
+				<span class="d-block mb-1">{s}</span>
+			))}</p>
+			<p class="website-data">{website}</p>
+			<p class="github-data">{github}</p>
 		</div>
 
 	</div>
@@ -46,6 +65,7 @@ const { title } = Astro.props;
 	}
 
 	.project-gradient{
+		border-radius: 12px;
 		height: 100%;
 		width: 100%;
 		position: absolute;
