@@ -85,113 +85,115 @@
 </div>
 
 <style>
-  #project-detail-container {
-    z-index: 99999;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0px;
-    right: 0px;
-    background: rgba(0, 0, 0, 0.8);
-  }
-  #project-detail {
-    background: #020a13;
-    width: 34em;
-    height: 100%;
-    position: fixed;
-    right: 0px;
-    top: 0px;
-    z-index: 999999;
-    transition: all 0.3s linear 0s;
-    will-change: opacity, transform;
-  }
-  @media (max-width: 768px) {
+    #project-detail-container {
+        z-index: 99999;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        right: 0px;
+        background: rgba(0, 0, 0, 0.8);
+    }
     #project-detail {
-      width: 100%; } }
-
-  .fadeInLeft {
-    animation-name: fadeLeft;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-  }
-  @keyframes fadeLeft {
-    from {
-      opacity: 0.8;
-      transform: translateX(80%);
+        background: #020a13;
+        width: 34em;
+        height: 100%;
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        z-index: 999999;
+        transition: all 0.3s linear 0s;
+        will-change: opacity, transform;
     }
-    to {
-      opacity: 1;
-      transform: translateX(0%);
+    @media (max-width: 768px) {
+        #project-detail{
+        width: 100%;
+        } 
     }
-  }
 
-  .pos__relative {
-    position: relative;
-    padding: 2rem 2rem 1rem;
-    overflow-x: overlay;
-    max-height: 100%;
-  }
-  .header-detail{
-    margin-bottom: 2rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid #14202b;
-  }
-  .header-detail a{
-    font-size: 0.875em;
-    font-weight: 900;
-    color: #3f566e;
-  }
-  .none-button{
-    border: none;
-    background: transparent;
-    padding-left: 0px;
-    border-radius: 5px;
-    padding: 0px 9px;
-    font-size: calc(0.875em + 1.5px);
-    cursor: pointer;
-  }
-  .main__post h3{
-    font-size: calc(1.667em - 6px);
-    color: #e1e1e1;
-    font-weight: 800;
-  }
-  .main__post img{
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 12px;
-  }
-  .main__post h4{
-    font-size: 1.124em;
-    color: #e1e1e1;
-    margin-top: 2rem;
-    margin-bottom: 0.8rem;
-  }
-  .main__post p{
-    color: #c6c6c6;
-    font-size: 0.875em;
-  }
-  .main__post p span{
-    background: #13283e;
-    padding: 6px 13px;
-    border-radius: 4px;
-    text-transform: capitalize;
-    font-size: 11px;
-    margin-right: 6px;
-    color: #e1e1e1;
-    font-weight: 500;
-    line-height: 1;
-  }
-  .main__post h4 svg{
-    vertical-align: bottom;
-    width: 15px;
-    margin-right: 3px;
-    fill: #c6c6c6;
-  }
-  .main__post p a{
-    font-weight: 600;
-    color: #3f566e;
-  }
+    .fadeInLeft {
+        animation-name: fadeLeft;
+        animation-duration: 0.5s;
+        animation-fill-mode: both;
+    }
+    @keyframes fadeLeft {
+        from {
+        opacity: 0.8;
+        transform: translateX(80%);
+        }
+        to {
+        opacity: 1;
+        transform: translateX(0%);
+        }
+    }
+
+    .pos__relative {
+        position: relative;
+        padding: 2rem 2rem 1rem;
+        overflow-x: overlay;
+        max-height: 100%;
+    }
+    .header-detail{
+        margin-bottom: 2rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid #14202b;
+    }
+    .header-detail a{
+        font-size: 0.875em;
+        font-weight: 900;
+        color: #3f566e;
+    }
+    .none-button{
+        border: none;
+        background: transparent;
+        padding-left: 0px;
+        border-radius: 5px;
+        padding: 0px 9px;
+        font-size: calc(0.875em + 1.5px);
+        cursor: pointer;
+    }
+    .main__post h3{
+        font-size: calc(1.667em - 6px);
+        color: #e1e1e1;
+        font-weight: 800;
+    }
+    .main__post img{
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+    .main__post h4{
+        font-size: 1.124em;
+        color: #e1e1e1;
+        margin-top: 2rem;
+        margin-bottom: 0.8rem;
+    }
+    .main__post p{
+        color: #c6c6c6;
+        font-size: 0.875em;
+    }
+    .main__post p span{
+        background: #13283e;
+        padding: 6px 13px;
+        border-radius: 4px;
+        text-transform: capitalize;
+        font-size: 11px;
+        margin-right: 6px;
+        color: #e1e1e1;
+        font-weight: 500;
+        line-height: 1;
+    }
+    .main__post h4 svg{
+        vertical-align: bottom;
+        width: 15px;
+        margin-right: 3px;
+        fill: #c6c6c6;
+    }
+    .main__post p a{
+        font-weight: 600;
+        color: #3f566e;
+    }
 </style>
 
 <script is:inline>

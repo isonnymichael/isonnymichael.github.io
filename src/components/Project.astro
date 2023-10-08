@@ -31,8 +31,19 @@ const { title } = Astro.props;
 		cursor: pointer;
 	}
 	@media (max-width: 668px) {
-    .project-card {
-      margin-bottom: 16px; } }
+    	.project-card {
+      		margin-bottom: 16px;
+		} 
+
+	  	.project-detail{
+			opacity: 1 !important;
+			transform: translateY(0%) !important;
+		}
+		.project-gradient{
+			background: linear-gradient(rgba(0, 0, 0, 0.1) 10%, rgba(0, 0, 0, 0.78) 80%);
+			opacity: 0.6;
+		}
+	}
 
 	.project-gradient{
 		height: 100%;
