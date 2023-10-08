@@ -81,10 +81,10 @@ button:focus {
 ============================================================================================ */
 .main_title {
   text-align: center;
-  margin-bottom: 100px; }
+  margin-bottom: 40px; }
   @media (max-width: 1199px) {
     .main_title {
-      margin-bottom: 50px; } }
+      margin-bottom: 30px; } }
   .main_title h2 {
     font-size: 36px;
     font-weight: 700;

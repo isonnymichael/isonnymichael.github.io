@@ -104,31 +104,34 @@ const experience = new Date().getFullYear() - startCareer;
 		<section class="contact-area" id="contact">
 			<div class="container">
 				<div class="row justify-content-center align-items-center">
-					<div class="col-lg-12">
+					<div class="col-12 col-sm-12 col-md-8">
 						<div class="main_title">
 							<h2>CONTACT ME </h2>
 						</div>
-						<form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxyvFqetMIZwdUTU2dw_vwYnVYcGrlTOEDIfBE5/exec">
-							<div class="form-group">
-								<label for="name">Your Email:</label>
-								<input id="form-email" class="form-control col-6" type="email" name="email" required>
-							</div>
 
-							<div class="form-group">
-								<label for="name">Name:</label>
-								<input id="form-name" class="form-control col-6" type="text" name="name" required>
-							</div>
-
-							<div class="form-group">
-								<label for="name">Message:</label>
-								<textarea id="form-message" class="form-control col-8" type="text" rows="8" name="message" required></textarea>
-							</div>
-
-							<button class="primary_btn" type="submit">
-								<span>Send</span>
-							</button>
-							
-						</form>
+						<div class="card p-4 shadow border-0">
+							<form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxyvFqetMIZwdUTU2dw_vwYnVYcGrlTOEDIfBE5/exec">
+								<div class="form-group">
+									<label for="name">Email:</label>
+									<input id="form-email" class="form-control col-12" placeholder="Enter Your Email" type="email" name="email" required>
+								</div>
+	
+								<div class="form-group">
+									<label for="name">Name:</label>
+									<input id="form-name" class="form-control col-12" placeholder="Enter Your Name" type="text" name="name" required>
+								</div>
+	
+								<div class="form-group">
+									<label for="name">Message:</label>
+									<textarea id="form-message" class="form-control col-12" placeholder="Enter Your Message" rows="8" name="message" required></textarea>
+								</div>
+	
+								<button class="primary_btn float-right mt-1 btn-block" type="submit">
+									<span>Send Message</span>
+								</button>
+							</form>
+						</div>
+						
 					</div>
 				</div>
 			</div>

@@ -15,10 +15,16 @@
                     <ul class="nav navbar-nav menu_nav justify-content-end">
                         <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact Me</a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="contactMe()" href="#contact">Contact Me</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
 </header>
+
+<script is:inline>
+    function contactMe(){
+        $("#form-email").focus();
+    }
+</script>
