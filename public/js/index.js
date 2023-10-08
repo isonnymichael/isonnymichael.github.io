@@ -154,6 +154,29 @@ $(".project-card").click(function(){
     "overflow":"hidden"
   });
 
+  // parsing data card into detail
+  var title = $( this ).find('.title-project').text();
+  var img = $( this ).find('.img-project').attr("src");
+  var about = $( this ).find('.about-data').text();
+  var stacks = $( this ).find('.stacks-data').html();
+  var website = $( this ).find('.website-data').text();
+  var github = $( this ).find('.github-data').text();
+
+  $("#detail-title").text(title);
+  $("#detail-img").attr("src",img);
+  $("#detail-about").text(about);
+  $("#detail-stacks").html(stacks);
+  $("#detail-website").text(website);
+  $("#detail-website").attr("href",website);
+  $("#detail-github").text(github);
+  $("#detail-github").attr("href",github);
+
+  if(github == ""){
+    $("#container-github").addClass("d-none");
+  }else{
+    $("#container-github").removeClass("d-none");
+  }
+
 });
 
 
