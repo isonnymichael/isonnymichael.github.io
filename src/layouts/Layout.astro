@@ -7,13 +7,17 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+const startCareer = 2019;
+const experience = new Date().getFullYear() - startCareer;
+const metaDescription = "Love to learn something new and easy going. Experienced in "+experience+"+ years being programmer, I have working on variety project website, apps, and games. "
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Love to learn something new and easy going. Experienced in 4+ years being programmer, I have working on variety project website, apps, and games." />
+		<meta name="description" content={metaDescription} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" href="/img/favicon.png" type="image/png">
 
