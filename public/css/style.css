@@ -338,7 +338,7 @@ button:focus {
       align-self: center; }
     .home_banner_area .banner_inner .banner_content {
       text-align: left; }
-      @media (max-width: 991px) {
+      @media (max-width: 600px) {
         .home_banner_area .banner_inner .banner_content {
           margin-top: 150px; } }
       .home_banner_area .banner_inner .banner_content h3 {
@@ -369,7 +369,12 @@ button:focus {
             font-size: 60px; } }
         @media (max-width: 767px) {
           .home_banner_area .banner_inner .banner_content h1 {
-            font-size: 50px; } }
+            font-size: 50px; } 
+            .about_area .primary_btn {
+              width: 100%; }
+              .home_banner_area .banner_inner .banner_content .primary_btn {
+                margin-right: 0px !important; }
+          }
       .home_banner_area .banner_inner .banner_content h5 {
         font-size: 24px;
         margin-bottom: 35px; }
@@ -2432,6 +2437,25 @@ h6 {
       .about_area .about_img {
         display: none; } }
 
+    @media (max-width: 991px) {
+      .profile_img {
+        display: none; } 
+      .home_banner_area,.banner_inner{
+        min-height: auto !important;
+      }
+      .banner_content{
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+        padding-bottom: 0px !important;
+      }
+      section{
+        padding-top: 29px !important;
+      }
+      .home_banner_area{
+        padding-top: 69px !important
+      }
+    }
+
 /* End About Us Area css
 ============================================================================================ */
 /* Start Barand Area css
@@ -3064,7 +3088,9 @@ h6 {
   .home_banner_area .banner_inner .banner_content {
     margin-top: 0px; }
     .home_banner_area .banner_inner .banner_content .primary_btn {
-      display: none; }
+      display: block; 
+      width: 100%;
+    }
 
   /* Blog Page Area css
   ============================================================================================ */
@@ -3333,5 +3359,5 @@ label{
 }
 
 section {    
-  padding-top: 69px !important;
+  padding-top: 69px;
 }
