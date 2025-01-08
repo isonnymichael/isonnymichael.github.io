@@ -8,262 +8,115 @@ const experience = new Date().getFullYear() - startCareer;
 ---
 
 <Layout title="Sonny Michael | Full Stack Developer">
-	<main>
-		<!--================ Start Home Banner Area =================-->
-		<section class="home_banner_area" id="home">
-			<div class="banner_inner">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-8">
-							<div class="banner_content">
-								<h3 class="text-uppercase">Hello</h3>
-								<h1 class="text-uppercase">I am Sonny Michael</h1>
-								<h5 class="text-uppercase">Full Stack Developer</h5>
-								<div class="d-flex align-items-center">
-									<a class="primary_btn" href="#contact"><span>Get In Touch</span></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="profile_img">
-								<img class="img-fluid" src="img/banner/home-right.png" alt="">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-		</section>
-		<!--================ End Home Banner Area =================-->
+  <main>
+    <!-- Home Banner Section -->
+    <section id="home" class="home_banner_area">
+      <div class="banner_inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="banner_content">
+                <h3 class="text-uppercase">Hello</h3>
+                <h1 class="text-uppercase">I am Sonny Michael</h1>
+                <h5 class="text-uppercase">Full Stack Developer</h5>
+                <div class="d-flex align-items-center">
+                  <a href="#contact" class="primary_btn"><span>Get In Touch</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="profile_img">
+                <img src="img/banner/home-right.png" alt="Profile" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<!--================ Start About Us Area =================-->
-		<section class="about_area" id="about">
-			<div class="container">
-				<div class="row justify-content-start">
-					<div class="col-lg-5">
-						<div class="about_img">
-							<img src="img/about-us.png" alt="">
-						</div>
-					</div>
+    <!-- About Section -->
+    <section id="about" class="about_area">
+      <div class="container">
+        <div class="row justify-content-start">
+          <div class="col-lg-5">
+            <div class="about_img">
+              <img src="img/about-us.png" alt="About Me">
+            </div>
+          </div>
+          <div class="offset-lg-1 col-lg-5">
+            <div class="main_title text-left">
+              <h2>Let’s<br>Introduce<br>Myself</h2>
+              <p>
+                I am passionate about learning and love tackling new challenges. With {experience}+ years of experience as a programmer, I have worked on a wide range of projects including websites, applications, and games.
+              </p>
+              <a href="https://drive.google.com/file/d/1v36OOtjwNJFgfycSKxBiy_O_WN3WHF-G/view?usp=sharing" class="primary_btn" target="_blank"><span>Download CV</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-					<div class="offset-lg-1 col-lg-5">
-						<div class="main_title text-left">
-							<h2>let’s <br>
-								Introduce about <br>
-								myself</h2>
-							<p>
-								Love to learn something new and easy going. Experienced in {experience}+ years being programmer, I have working on variety project website, apps, and games. 
-							</p>
-							<a class="primary_btn" target="_blank" href="https://drive.google.com/file/d/1v36OOtjwNJFgfycSKxBiy_O_WN3WHF-G/view?usp=sharing"><span>Download CV</span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!--================ End About Us Area =================-->
+    <!-- Projects Section -->
+    <section id="projects" class="projects_area">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <div class="main_title">
+              <h2>Projects</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Add project components dynamically -->
+          <Project 
+            title="Gamelab"
+            img="/img/portfolio/gamelab.png"
+            about="LMS website with comprehensive features for B2C, B2B, and B2G needs. Includes features like an online code editor, report automation, and AI-generated materials."
+            stacks={["PHP", "HTML", "CSS", "JavaScript", "Bootstrap", "jQuery", "Vuejs", "Slim", "Medoo", "MySQL"]}
+            website="https://www.gamelab.id/"
+          />
+          <!-- Additional Project components go here -->
+        </div>
+      </div>
+    </section>
 
-		<!--================ Start Projects Area =================-->
-		<section class="projects_area" id="projects">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-8 text-center">
-						<div class="main_title">
-							<h2>Projects</h2>
-						</div>
-					</div>
-				</div>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-area">
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-8">
+            <div class="main_title">
+              <h2>Contact Me</h2>
+            </div>
+            <div class="card p-4 shadow border-0">
+              <form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxyvFqetMIZwdUTU2dw_vwYnVYcGrlTOEDIfBE5/exec">
+                <div class="form-group">
+                  <label for="form-email">Email:</label>
+                  <input type="email" id="form-email" name="email" class="form-control" placeholder="Enter Your Email" required>
+                </div>
+                <div class="form-group">
+                  <label for="form-name">Name:</label>
+                  <input type="text" id="form-name" name="name" class="form-control" placeholder="Enter Your Name" required>
+                </div>
+                <div class="form-group">
+                  <label for="form-message">Message:</label>
+                  <textarea id="form-message" name="message" class="form-control" rows="8" placeholder="Enter Your Message" required></textarea>
+                </div>
+                <button type="submit" class="primary_btn btn-block mt-1"><span>Send Message</span></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-				<div class="row">
-
-					<Project 
-						title="Gamelab" 
-						img="/img/portfolio/gamelab.png"
-						about="LMS website with very complete features for B2C, B2B and B2G needs. There are many complex features in this project, for example implementing an online code editor, report automation, Google Drive, Google Calendar, Google Meet, generating material with AI, and many others. In this project I learned a lot about implementing many new technologies."
-						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","Vuejs","Slim","Medoo","MySQL"]}
-						website="https://www.gamelab.id/"
-						github=""
-					/>
-
-					<Project 
-						title="Educa Academy" 
-						img="/img/portfolio/academy-educa.png"
-						about="LMS websites focus on certain segments, for example one that is already running is for teachers. There are also Event and Blog features."
-						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","Vuejs","Slim","Medoo","MySQL"]}
-						website="https://academy.educa.id/"
-						github=""
-					/>
-
-					<Project 
-						title="Company Profile - Educa" 
-						img="/img/portfolio/compro.png"
-						about="Company Profile about the Educa Studio company. Static website, does not use much technology, focuses on information about the company. With a clean and interactive design, it is hoped that information can be informed well."
-						stacks= {["HTML","CSS","JavaScript","Bootstrap","jQuery"]}
-						website="https://lp.educastudio.com/comprov2"
-						github=""
-					/>
-
-					<Project 
-						title="Educa Studio" 
-						img="/img/portfolio/educastudio.png"
-						about="Educa Studio company portal, complete information about Educa Studio Brands, Channels and Programs. There are Event, Blog and Redeem Code Voucher features for the Educa Studio application."
-						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","Slim","Medoo","MySQL"]}
-						website="https://www.educastudio.com/"
-						github=""
-					/>
-
-					<Project 
-						title="Platform Educa Studio" 
-						img="/img/portfolio/platform.png"
-						about="Website CMS and API Services for the Educa Studio application. Can manage content, downloadable assets, and monitor analytics data that is created and processed by yourself without using a 3rd party."
-						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","Slim","Medoo","MySQL","Postman"]}
-						website="https://platform.educastudio.com/"
-						github=""
-					/>
-
-					<Project 
-						title="Report Educa Studio" 
-						img="/img/portfolio/report.png"
-						about="Educa Studio reporting website for conducting absences, daily reports, and information about company internals."
-						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","MySQL"]}
-						website="https://report.educastudio.com/"
-						github=""
-					/>
-
-					<Project 
-						title="Kapila" 
-						img="/img/portfolio/kapila.png"
-						about="Online private tutoring website with 1 on 1 Video Call feature, there are interactive media boards and real time mini games. Users can choose their own schedule and teacher. There are also Event and Blog features."
-						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","MySQL","Laravel","Socket","Phaser"]}
-						website="https://www.kapila.id/"
-						github=""
-					/>
-
-					<Project 
-						title="Jadi Programmer" 
-						img="/img/portfolio/jadiprogrammer.png"
-						about="Personal blog website, I often write articles, especially tutorials here. Created using WordPress."
-						stacks= {["PHP","HTML","CSS","JavaScript","Wordpress"]}
-						website="https://www.jadiprogrammer.com/"
-						github=""
-					/>
-
-					<Project 
-						title="NFT Marketplace" 
-						img="/img/portfolio/nft-marketplace.png"
-						about="The NFT Marketplace website can mint NFTs and buy NFTs. This project is not used for commercial purposes, only for learning about blockchain."
-						stacks= {["HTML","CSS","JavaScript","Solidity","Nextjs","Tailwind","Truffle","Infura","Optimism"]}
-						website="https://nft-marketplace-one-silk.vercel.app/"
-						github="https://github.com/isonnymichael/nft-marketplace"
-					/>
-
-					<Project 
-						title="Polyzard" 
-						img="/img/portfolio/polyzard.png"
-						about="Idle genre game, integrated with blockchain tokens. Watermelon token is created on the Polygon network and uses openzeppelin ERC20. There is a top score feature and data storage using Firebase. One of my learning projects is about blockchain."
-						stacks= {["C#","Solidity","Unity","Thirdweb","Remix","Polygon","Firebase"]}
-						website="https://polyzard-build.vercel.app/"
-						github="https://github.com/isonnymichael/polyzard-build"
-					/>
-
-					<Project 
-						title="SButtons" 
-						img="/img/portfolio/sbuttons.png"
-						about="Github opensource project, button library using Less CSS. Become one of the contributors and maintainers. One of my projects is to learn about the contributions of open source projects."
-						stacks= {["HTML","CSS","Javascript","Less"]}
-						website="https://sbuttons.netlify.app/"
-						github="https://github.com/sButtons/sbuttons"
-					/>
-
-					<Project 
-						title="Blue Band Apps" 
-						img="/img/portfolio/blueband.png"
-						about="Mobile applications (Android) are created using Kotlin, only working on the frontend (mobile apps). There are menus, recipes, and prize exchanges based on points earned by purchasing products in it."
-						stacks= {["Kotlin","Android Studio"]}
-						website="https://play.google.com/store/apps/details?id=app.bluebandkitchenmaster.com&hl=en_ZA/"
-						github=""
-					/>
-
-					<Project 
-						title="Allstars Apps" 
-						img="/img/portfolio/allstars.png"
-						about="Mobile applications (Android) are created using React Native, only working on the frontend (mobile apps). It is an influencer marketplace application, users can buy or sell services as influencers."
-						stacks= {["JavaScript","React Native","Android Studio"]}
-						website="https://play.google.com/store/apps/details?id=id.allstars.member&hl=en_ZA"
-						github=""
-					/>
-
-					<Project 
-						title="Logic Games for Kids - Marbel Games" 
-						img="/img/portfolio/petualanganlogika.png"
-						about="Puzzle genre game, lots of complex logic is created in this project. Made with C++ language and Cocos2DX game engine. Apart from this, there are several Marbel games that I also made."
-						stacks= {["C++","Cocos2DX","Android Studio"]}
-						website="https://play.google.com/store/apps/details?id=com.educastudio.marbellogicadventures&hl=en_ZA"
-						github=""
-					/>
-
-					<Project 
-						title="Marbel Fauna 4D - Flashcard" 
-						img="/img/portfolio/marbel4d.png"
-						about="The 4D application has a Fauna theme, the application can scan flashcard products and will display a 3D model according to the image. Created using Unity and the EasyAR library."
-						stacks= {["C#","Unity","Android Studio"]}
-						website="https://play.google.com/store/apps/details?id=com.educastudio.marbelfauna4d&hl=en_ZA"
-						github=""
-					/>
-					
-				</div>
-
-			</div>
-		</section>
-		<!--================ End Projects Area =================-->
-
-		<!--================ Start Contact Area =================-->
-		<section class="contact-area" id="contact">
-			<div class="container">
-				<div class="row justify-content-center align-items-center">
-					<div class="col-12 col-sm-12 col-md-8">
-						<div class="main_title">
-							<h2>CONTACT ME </h2>
-						</div>
-
-						<div class="card p-4 shadow border-0">
-							<form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxyvFqetMIZwdUTU2dw_vwYnVYcGrlTOEDIfBE5/exec">
-								<div class="form-group">
-									<label for="name">Email:</label>
-									<input id="form-email" class="form-control col-12" placeholder="Enter Your Email" type="email" name="email" required>
-								</div>
-	
-								<div class="form-group">
-									<label for="name">Name:</label>
-									<input id="form-name" class="form-control col-12" placeholder="Enter Your Name" type="text" name="name" required>
-								</div>
-	
-								<div class="form-group">
-									<label for="name">Message:</label>
-									<textarea id="form-message" class="form-control col-12" placeholder="Enter Your Message" rows="8" name="message" required></textarea>
-								</div>
-	
-								<button class="primary_btn float-right mt-1 btn-block" type="submit">
-									<span>Send Message</span>
-								</button>
-							</form>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-		</section>
-		<!--================ End Newsletter Area =================-->
-		
-		<ProjectDetail />
-	</main>
+    <ProjectDetail />
+  </main>
 </Layout>
 
-<script is:inline type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" is:inline></script>
+<script>
+  (function() {
+    emailjs.init("JUMAkpW3rGZb8oU_U");
+  })();
 </script>
-
-<script type="text/javascript">
-	(function(){
-	   emailjs.init("JUMAkpW3rGZb8oU_U");
-	})();
- </script>
