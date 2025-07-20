@@ -6,12 +6,13 @@ interface Props {
 	stacks: Array<string>;
 	website: string;
 	github: string;
+	category?: string;
 }
 
-const { title, img, about, stacks, website, github } = Astro.props;
+const { title, img, about, stacks, website, github, category = 'web2' } = Astro.props;
 ---
 
-<div class="col-12 col-sm-4">
+<div class="col-12 col-sm-4 project-item" data-category={category}>
 	<div class="project-card shadow">
 		<img class="img-project" src={img}>
 		<div class="project-gradient"></div>

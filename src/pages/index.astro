@@ -73,7 +73,69 @@ const experience = new Date().getFullYear() - startCareer;
 					</div>
 				</div>
 
+				<!-- Project Categories -->
+				<div class="row mb-4">
+					<div class="col-12 text-center">
+						<div class="project-categories">
+							<button class="category-btn active" data-category="all">All Projects</button>
+							<button class="category-btn" data-category="web2">Web2</button>
+							<button class="category-btn" data-category="web3">Web3</button>
+							<button class="category-btn" data-category="apps">Apps</button>
+						</div>
+					</div>
+				</div>
+
 				<div class="row">
+
+					<Project 
+						title="Pinjam Dapp" 
+						img="/img/portfolio/pinjam.png"
+						about="A decentralized borrowing and lending platform built on the Plume network. Users can lend their crypto assets to earn interest or borrow assets by providing collateral. The platform uses smart contracts to automate lending processes, manage interest rates, and handle liquidations in a trustless manner."
+						stacks= {["HTML","Tailwind","React","Solidity","Thirdweb","Tailwind","Plume"]}
+						website="-"
+						github="https://github.com/isonnymichael/pinjam"
+						category="web3"
+					/>
+
+					<Project 
+						title="Pet Shop Dapp" 
+						img="/img/portfolio/pet-shop.png"
+						about="A decentralized pet shop application built on blockchain technology. Users can browse, purchase and adopt pets using cryptocurrency. This project demonstrates the integration of smart contracts with a modern web interface."
+						stacks= {["HTML","CSS","JavaScript","Solidity","Nextjs","Tailwind","Truffle","Infura","Optimism"]}
+						website="-"
+						github="https://github.com/isonnymichael/pet-shop-dapp"
+						category="web3"
+					/>
+
+					<Project 
+						title="NFT Marketplace" 
+						img="/img/portfolio/nft-marketplace.png"
+						about="The NFT Marketplace website can mint NFTs and buy NFTs. This project is not used for commercial purposes, only for learning about blockchain."
+						stacks= {["HTML","CSS","JavaScript","Solidity","Nextjs","Tailwind","Truffle","Infura","Optimism"]}
+						website="-"
+						github="https://github.com/isonnymichael/nft-marketplace"
+						category="web3"
+					/>
+
+					<Project 
+						title="Teazard" 
+						img="/img/portfolio/polyzard.png"
+						about="Idle genre game, integrated with blockchain tokens. Teazard token is created on the Tea network and uses openzeppelin ERC20. There is a top score feature and data storage using Firebase. One of my learning projects is about blockchain."
+						stacks= {["C#","Solidity","Unity","Thirdweb","Remix","Tea","Firebase"]}
+						website="https://teazard.my.id"
+						github="https://github.com/isonnymichael/teazard"
+						category="web3"
+					/>
+
+					<Project 
+						title="Floating Awesome Button" 
+						img="/img/portfolio/fab.png"
+						about="Floating Awesome Button is a WordPress plugin that allows users to create and share buttons on websites. Users can customize the buttons, such as changing the color, size, and location, and also add text or images."
+						stacks= {["PHP","HTML","SASS","JavaScript","Tailwind","jQuery","Vuejs","Svelte"]}
+						website="https://wordpress.org/plugins/floating-awesome-button/"
+						github=""
+						category="web2"
+					/>
 
 					<Project 
 						title="Gamelab" 
@@ -82,6 +144,7 @@ const experience = new Date().getFullYear() - startCareer;
 						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","Vuejs","Slim","Medoo","MySQL"]}
 						website="https://www.gamelab.id/"
 						github=""
+						category="web2"
 					/>
 
 					<Project 
@@ -91,6 +154,7 @@ const experience = new Date().getFullYear() - startCareer;
 						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","Vuejs","Slim","Medoo","MySQL"]}
 						website="https://academy.educa.id/"
 						github=""
+						category="web2"
 					/>
 
 					<Project 
@@ -100,6 +164,7 @@ const experience = new Date().getFullYear() - startCareer;
 						stacks= {["HTML","CSS","JavaScript","Bootstrap","jQuery"]}
 						website="https://lp.educastudio.com/comprov2"
 						github=""
+						category="web2"
 					/>
 
 					<Project 
@@ -109,6 +174,7 @@ const experience = new Date().getFullYear() - startCareer;
 						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","Slim","Medoo","MySQL"]}
 						website="https://www.educastudio.com/"
 						github=""
+						category="web2"
 					/>
 
 					<Project 
@@ -116,8 +182,9 @@ const experience = new Date().getFullYear() - startCareer;
 						img="/img/portfolio/platform.png"
 						about="Website CMS and API Services for the Educa Studio application. Can manage content, downloadable assets, and monitor analytics data that is created and processed by yourself without using a 3rd party."
 						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","Slim","Medoo","MySQL","Postman"]}
-						website="https://platform.educastudio.com/"
+						website="-"
 						github=""
+						category="web2"
 					/>
 
 					<Project 
@@ -125,8 +192,9 @@ const experience = new Date().getFullYear() - startCareer;
 						img="/img/portfolio/report.png"
 						about="Educa Studio reporting website for conducting absences, daily reports, and information about company internals."
 						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","MySQL"]}
-						website="https://report.educastudio.com/"
+						website="-"
 						github=""
+						category="web2"
 					/>
 
 					<Project 
@@ -136,6 +204,7 @@ const experience = new Date().getFullYear() - startCareer;
 						stacks= {["PHP","HTML","CSS","JavaScript","Bootstrap","jQuery","MySQL","Laravel","Socket","Phaser"]}
 						website="https://www.kapila.id/"
 						github=""
+						category="web2"
 					/>
 
 					<Project 
@@ -143,26 +212,9 @@ const experience = new Date().getFullYear() - startCareer;
 						img="/img/portfolio/jadiprogrammer.png"
 						about="Personal blog website, I often write articles, especially tutorials here. Created using WordPress."
 						stacks= {["PHP","HTML","CSS","JavaScript","Wordpress"]}
-						website="https://www.jadiprogrammer.com/"
+						website="-"
 						github=""
-					/>
-
-					<Project 
-						title="NFT Marketplace" 
-						img="/img/portfolio/nft-marketplace.png"
-						about="The NFT Marketplace website can mint NFTs and buy NFTs. This project is not used for commercial purposes, only for learning about blockchain."
-						stacks= {["HTML","CSS","JavaScript","Solidity","Nextjs","Tailwind","Truffle","Infura","Optimism"]}
-						website="https://nft-marketplace-one-silk.vercel.app/"
-						github="https://github.com/isonnymichael/nft-marketplace"
-					/>
-
-					<Project 
-						title="Polyzard" 
-						img="/img/portfolio/polyzard.png"
-						about="Idle genre game, integrated with blockchain tokens. Watermelon token is created on the Polygon network and uses openzeppelin ERC20. There is a top score feature and data storage using Firebase. One of my learning projects is about blockchain."
-						stacks= {["C#","Solidity","Unity","Thirdweb","Remix","Polygon","Firebase"]}
-						website="https://polyzard-build.vercel.app/"
-						github="https://github.com/isonnymichael/polyzard-build"
+						category="web2"
 					/>
 
 					<Project 
@@ -172,6 +224,7 @@ const experience = new Date().getFullYear() - startCareer;
 						stacks= {["HTML","CSS","Javascript","Less"]}
 						website="https://sbuttons.netlify.app/"
 						github="https://github.com/sButtons/sbuttons"
+						category="web2"
 					/>
 
 					<Project 
@@ -181,6 +234,7 @@ const experience = new Date().getFullYear() - startCareer;
 						stacks= {["Kotlin","Android Studio"]}
 						website="https://play.google.com/store/apps/details?id=app.bluebandkitchenmaster.com&hl=en_ZA/"
 						github=""
+						category="apps"
 					/>
 
 					<Project 
@@ -190,6 +244,7 @@ const experience = new Date().getFullYear() - startCareer;
 						stacks= {["JavaScript","React Native","Android Studio"]}
 						website="https://play.google.com/store/apps/details?id=id.allstars.member&hl=en_ZA"
 						github=""
+						category="apps"
 					/>
 
 					<Project 
@@ -199,6 +254,7 @@ const experience = new Date().getFullYear() - startCareer;
 						stacks= {["C++","Cocos2DX","Android Studio"]}
 						website="https://play.google.com/store/apps/details?id=com.educastudio.marbellogicadventures&hl=en_ZA"
 						github=""
+						category="apps"
 					/>
 
 					<Project 
@@ -208,11 +264,32 @@ const experience = new Date().getFullYear() - startCareer;
 						stacks= {["C#","Unity","Android Studio"]}
 						website="https://play.google.com/store/apps/details?id=com.educastudio.marbelfauna4d&hl=en_ZA"
 						github=""
+						category="apps"
 					/>
 					
 				</div>
 
 			</div>
+
+			<div align="center">
+				<a href="https://github.com/isonnymichael?tab=repositories">
+					<img src="https://streak-stats.demolab.com?user=isonnymichael&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
+				</a>
+				<br/>
+
+				<a href="https://github.com/isonnymichael?tab=repositories">
+					<img src="https://github-profile-trophy.vercel.app/?username=isonnymichael&theme=tokyonight&no-frame=true&rank=SECRET,SSS,SS,S,AAA,AA,A" alt="Trophy" />
+				</a>
+
+				<br/>
+
+				<a href="https://github.com/isonnymichael?tab=repositories">
+					<img height="137px" src="https://github-readme-stats.vercel.app/api?username=isonnymichael&hide_title=true&hide_border=true&show_icons=true&include_all_commits=true&count_private=true&line_height=21&theme=tokyonight&rank_icon=github" />
+				</a>
+
+				<img height="137px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=isonnymichael&hide=html&hide_title=true&hide_border=true&layout=compact&langs_count=6&exclude_repo=comp426,Redventures-Movie-Quotes&icon_color=fff&theme=tokyonight" />
+			</div>
+
 		</section>
 		<!--================ End Projects Area =================-->
 
