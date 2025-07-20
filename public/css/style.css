@@ -77,6 +77,30 @@ button:focus {
     .section_gap_bottom {
       padding-bottom: 80px; } }
 
+/* Project Categories css
+============================================================================================ */
+.project-categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px; }
+
+.category-btn {
+  background: transparent;
+  border: 2px solid #8e54e9;
+  color: #8e54e9;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease; }
+
+.category-btn:hover, .category-btn.active {
+  background: #8e54e9;
+  color: #fff; }
+
 /* Main Title Area css
 ============================================================================================ */
 .main_title {
@@ -2792,6 +2816,36 @@ h6 {
 
 /* End Testimonial Area css
 ============================================================================================ */
+
+/* GitHub Stats Area css
+============================================================================================ */
+[align="center"] img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+  [align="center"] img {
+    max-width: 100%;
+    height: auto !important; /* Override fixed height on mobile */
+  }
+  
+  [align="center"] img[src*="github-profile-trophy"] {
+    max-width: 100%;
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 480px) {
+  [align="center"] img[src*="github-profile-trophy"] {
+    transform: scale(0.8);
+    margin-left: -10%;
+    margin-right: -10%;
+    max-width: 120%;
+  }
+}
+
 /* Start Newsletter Area css
 ============================================================================================ */
 .newsletter_area {

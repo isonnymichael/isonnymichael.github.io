@@ -1,5 +1,31 @@
 $(document).ready(function () {
 
+  // Project category filtering
+  $(".category-btn").click(function() {
+    // Remove active class from all buttons
+    $(".category-btn").removeClass("active");
+    // Add active class to clicked button
+    $(this).addClass("active");
+    
+    // Get selected category
+    var category = $(this).data("category");
+    
+    // Show all projects if "all" is selected, otherwise filter by category
+    if (category === "all") {
+      $(".project-item").show();
+    } else {
+      $(".project-item").hide();
+      // Show projects that have the selected category (including those with multiple categories)
+      $(".project-item").each(function() {
+        var projectCategories = $(this).data("category").split(" ");
+        if (projectCategories.includes(category)) {
+          $(this).show();
+        }
+      });
+    }
+  });
+
+
 	$.fn.isOnScreen = function(x_offset, y_offset) {
     if(x_offset == null || typeof x_offset == 'undefined') x_offset = 1;
     if(y_offset == null || typeof y_offset == 'undefined') y_offset = 1;
