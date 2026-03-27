@@ -20,7 +20,7 @@ function App() {
     >
       <div className="grid-bg absolute inset-0" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-[1320px] gap-4 px-4 py-5 md:grid-cols-[320px_1fr] md:items-start md:px-6">
+      <div className="relative z-10 mx-auto grid grid-cols-1 w-full max-w-[1320px] gap-4 px-4 py-5 md:grid-cols-[320px_1fr] md:items-start md:px-6">
         <div className="md:sticky md:top-5">
           <Sidebar profileData={profileData} languageItems={languageItems} />
         </div>

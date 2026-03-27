@@ -65,7 +65,7 @@ function RepositoriesSection({ repoCards, isLoading }) {
                     href={repo.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="relative block rounded-md border border-slate-200 bg-white p-3"
+                    className="relative block rounded-md border border-slate-200 bg-white p-3 min-w-0 overflow-hidden"
                     hoverAnim={JELLY_ANIM}
                     hoverTransition={JELLY_TRANSITION}
                   >

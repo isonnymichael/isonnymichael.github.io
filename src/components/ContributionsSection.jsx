@@ -23,17 +23,17 @@ function ContributionCard({ c }) {
       href={c.url}
       target="_blank"
       rel="noreferrer"
-      className="flex flex-col rounded-md border border-slate-200 bg-white"
+      className="flex flex-col rounded-md border border-slate-200 bg-white min-w-0"
       hoverAnim={BOUNCE_ANIM}
       hoverTransition={BOUNCE_TRANSITION}
     >
       <div className="flex flex-1 flex-col gap-1.5 p-3">
         <div className="flex items-start justify-between gap-2">
-          <p className="text-[11px] text-slate-400">{c.repoFullName}</p>
+          <p className="text-[11px] text-slate-400 truncate">{c.repoFullName}</p>
           <Code2 size={13} className="mt-0.5 shrink-0 text-slate-400" />
         </div>
 
-        <p className="text-sm font-semibold leading-snug text-slate-800">
+        <p className="text-sm font-semibold leading-snug text-slate-800 line-clamp-2">
           #{c.number} {c.title}
         </p>
 
