@@ -1,15 +1,21 @@
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 import {
-  BookOpen,
+  Camera,
   ChevronLeft,
   ChevronRight,
   Code2,
   ExternalLink,
   Globe,
+  Hash,
+  Headphones,
   Link2,
   Mail,
+  MessageSquare,
+  Music2,
+  Play,
   Send,
+  Users,
 } from 'lucide-react'
 import profilePicture from './assets/images/profile-picture.jpg'
 
@@ -18,8 +24,10 @@ const githubToken = import.meta.env.VITE_GITHUB_TOKEN
 
 const profileLinks = {
   github: `https://github.com/${githubUsername}`,
-  linkedIn: 'https://www.linkedin.com/in/isonnymichael',
-  email: 'mailto:hello@isonnymichael.dev',
+  linkedIn: 'https://www.linkedin.com/in/sonny-michael-95723512a/',
+  email: 'mailto:isonnymichael@gmail.com',
+  telegram: 'https://t.me/isonnymichael',
+  discord: 'https://discord.com/users/isonnymichael',
 }
 
 const repositoryAvatar = 'https://avatars.githubusercontent.com/u/24585708?v=4'
@@ -143,14 +151,13 @@ const stackRows = [
 ]
 
 const socialItems = [
-  { label: 'YouTube', desc: 'Tech & Gadget', color: 'bg-red-500', icon: Globe },
-  { label: 'LinkedIn', desc: 'Find jobs and network', color: 'bg-blue-700', icon: Link2 },
-  { label: 'Twitter', desc: 'Tech threads', color: 'bg-sky-500', icon: Send },
-  { label: 'GitHub', desc: 'Open source projects', color: 'bg-slate-800', icon: Code2 },
-  { label: 'Spotify', desc: 'Heavy metal dev', color: 'bg-green-500', icon: Globe },
-  { label: 'TikTok', desc: 'Short coding clips', color: 'bg-pink-500', icon: BookOpen },
-  { label: 'Docker', desc: 'Living inside containers', color: 'bg-cyan-600', icon: Code2 },
-  { label: 'Wikipedia', desc: 'Free knowledge', color: 'bg-slate-600', icon: BookOpen },
+  { label: 'LinkedIn', desc: '@isonnymichael', color: 'bg-[#0077B5]', icon: Link2, href: 'https://www.linkedin.com/in/sonny-michael-95723512a/' },
+  { label: 'Facebook', desc: '@isonnymichael', color: 'bg-[#1877F2]', icon: Users, href: 'https://www.facebook.com/iSonnyMichael/' },
+  { label: 'Instagram', desc: '@isonnymichael', color: 'bg-[#E4405F]', icon: Camera, href: 'https://www.instagram.com/isonnymichael/' },
+  { label: 'Twitter', desc: '@isonnymichael', color: 'bg-black', icon: Hash, href: 'https://twitter.com/isonnymichael' },
+  { label: 'YouTube', desc: '@isonnymichael', color: 'bg-[#FF0000]', icon: Play, href: 'https://www.youtube.com/@isonnymichael' },
+  { label: 'TikTok', desc: '@isonnymichael', color: 'bg-black', icon: Music2, href: 'https://www.tiktok.com/@isonnymichael' },
+  { label: 'GitHub', desc: '@isonnymichael', color: 'bg-slate-800', icon: Code2, href: 'https://github.com/isonnymichael' },
 ]
 
 const languageColorMap = {
@@ -167,6 +174,26 @@ const languageColorMap = {
 }
 
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+const RESET_STATE = { y: 0, scaleX: 1, scaleY: 1, scale: 1, rotate: 0 }
+const RESET_TRANSITION = { duration: 0.22, ease: 'easeOut' }
+
+function HoverAnimCard({ tag = 'a', hoverAnim, hoverTransition, className, children, ...props }) {
+  const controls = useAnimation()
+  const MotionTag = motion[tag]
+  return (
+    <MotionTag
+      animate={controls}
+      initial={RESET_STATE}
+      onHoverStart={() => controls.start({ ...hoverAnim, transition: hoverTransition })}
+      onHoverEnd={() => { controls.stop(); controls.start({ ...RESET_STATE, transition: RESET_TRANSITION }) }}
+      className={className}
+      {...props}
+    >
+      {children}
+    </MotionTag>
+  )
+}
 
 function StackItem({ item, rowLabel }) {
   const [showTip, setShowTip] = useState(false)
@@ -456,7 +483,7 @@ function App() {
       <div className="grid-bg absolute inset-0" />
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1320px] gap-4 px-4 py-5 md:grid-cols-[320px_1fr] md:px-6">
-        <aside className="rounded-xl border border-slate-200 bg-white h-fit shadow-[0_12px_40px_-30px_rgba(15,23,42,0.32)]">
+        <aside className="rounded-xl border border-slate-200 bg-white h shadow-[0_12px_40px_-30px_rgba(15,23,42,0.32)]">
           <div className="h-24 rounded-t-xl bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900" />
           <div className="px-5 pb-5">
             <div className="-mt-14 flex justify-center">
@@ -532,14 +559,14 @@ function App() {
                   const date = new Date(c.updatedAt)
                   const dateStr = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
                   return (
-                    <motion.a
+                    <HoverAnimCard
                       key={`contribution-${c.repoFullName}-${c.number}`}
                       href={c.url}
                       target="_blank"
                       rel="noreferrer"
                       className="flex flex-col rounded-md border border-slate-200 bg-white"
-                      whileHover={{ y: [0, -18, 2, -10, 0.5, -4, 0] }}
-                      transition={{ duration: 0.72, times: [0, 0.22, 0.42, 0.6, 0.75, 0.87, 1], ease: ['easeOut', 'easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'] }}
+                      hoverAnim={{ y: [0, -18, 2, -10, 0.5, -4, 0] }}
+                      hoverTransition={{ duration: 0.72, times: [0, 0.22, 0.42, 0.6, 0.75, 0.87, 1], ease: ['easeOut', 'easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'] }}
                     >
                       <div className="flex flex-1 flex-col gap-1.5 p-3">
                         <div className="flex items-start justify-between gap-2">
@@ -594,7 +621,7 @@ function App() {
                       </div>
 
                       <div className="h-1 w-full rounded-b-md bg-gradient-to-r from-lime-400 via-yellow-400 via-orange-400 to-red-500" />
-                    </motion.a>
+                    </HoverAnimCard>
                   )
                 })}
             </div>
@@ -665,14 +692,14 @@ function App() {
                       className="grid gap-2 md:grid-cols-3"
                     >
                       {visibleRepos.map((repo) => (
-                        <motion.a
+                        <HoverAnimCard
                           key={repo.name}
                           href={repo.url}
                           target="_blank"
                           rel="noreferrer"
                           className="relative block rounded-md border border-slate-200 bg-white p-3"
-                          whileHover={{ y: [0, -18, 2, -10, 0.5, -4, 0] }}
-                          transition={{ duration: 0.72, times: [0, 0.22, 0.42, 0.6, 0.75, 0.87, 1], ease: ['easeOut', 'easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'] }}
+                          hoverAnim={{ scaleX: [1, 1.12, 0.92, 1.04, 0.98, 1], scaleY: [1, 0.88, 1.08, 0.96, 1.02, 1] }}
+                          hoverTransition={{ duration: 0.5, times: [0, 0.2, 0.4, 0.6, 0.8, 1], ease: 'easeInOut' }}
                         >
                           <img
                             src={repo.avatarUrl}
@@ -686,7 +713,7 @@ function App() {
                             <span>⑂ {repo.forks === 0 ? '' : repo.forks}</span>
                           </div>
                           <div className="mt-2 h-1.5 rounded bg-gradient-to-r from-blue-500 via-sky-500 via-orange-500 to-pink-500" />
-                        </motion.a>
+                        </HoverAnimCard>
                       ))}
                     </motion.div>
                   </AnimatePresence>
@@ -695,7 +722,7 @@ function App() {
                     <button
                       onClick={handleRepoPrev}
                       disabled={repoSlideIndex === 0}
-                      className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-30"
+                      className="flex h-7 w-7 items-center cursor-pointer justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-30"
                     >
                       <ChevronLeft size={14} />
                     </button>
@@ -717,7 +744,7 @@ function App() {
                     <button
                       onClick={handleRepoNext}
                       disabled={repoSlideIndex >= totalRepoPages - 1}
-                      className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-30"
+                      className="flex h-7 w-7 items-center cursor-pointer justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-30"
                     >
                       <ChevronRight size={14} />
                     </button>
@@ -730,53 +757,67 @@ function App() {
           <SectionCard title="Social">
             <div className="grid gap-2 md:grid-cols-3">
               {socialItems.map((item) => (
-                <motion.a
+                <HoverAnimCard
                   key={item.label}
-                  href={profileData.github}
+                  href={item.href}
                   target="_blank"
                   rel="noreferrer"
                   className={`${item.color} rounded-md p-3 text-white`}
-                  whileHover={{ x: [0, -5, 5, -4, 4, -2, 2, 0], scale: 1.02 }}
-                  transition={{ duration: 0.45, scale: { type: 'spring', stiffness: 300 } }}
+                  hoverAnim={{ scale: [1, 1.08, 0.95, 1.03, 0.98, 1], rotate: [0, -2, 2, -1, 1, 0] }}
+                  hoverTransition={{ duration: 0.5, times: [0, 0.15, 0.35, 0.55, 0.75, 1], ease: 'easeInOut' }}
                 >
                   <p className="flex items-center gap-1.5 text-sm font-semibold">
                     <item.icon size={14} />
                     {item.label}
                   </p>
                   <p className="text-xs opacity-90">{item.desc}</p>
-                </motion.a>
+                </HoverAnimCard>
               ))}
             </div>
           </SectionCard>
 
           <SectionCard title="Contact">
-            <div className="grid gap-2 md:grid-cols-2">
-              <motion.a
+            <div className="grid gap-2 md:grid-cols-3">
+              <HoverAnimCard
                 href={profileData.email}
                 className="rounded-md bg-sky-600 p-3 text-white"
-                whileHover={{ y: [0, -18, 2, -10, 0.5, -4, 0] }}
-                transition={{ duration: 0.72, times: [0, 0.22, 0.42, 0.6, 0.75, 0.87, 1], ease: ['easeOut', 'easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'] }}
+                hoverAnim={{ y: [0, -18, 2, -10, 0.5, -4, 0] }}
+                hoverTransition={{ duration: 0.72, times: [0, 0.22, 0.42, 0.6, 0.75, 0.87, 1], ease: ['easeOut', 'easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'] }}
               >
                 <p className="flex items-center gap-1.5 text-sm font-semibold">
                   <Mail size={14} />
                   Email
                 </p>
-                <p className="text-xs opacity-90">Business and collaborations</p>
-              </motion.a>
-              <motion.a
-                href={profileData.linkedIn}
+                <p className="text-xs opacity-90">isonnymichael@gmail.com</p>
+              </HoverAnimCard>
+              <HoverAnimCard
+                href={profileData.telegram}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-md bg-blue-800 p-3 text-white"
-                whileHover={{ y: [0, -18, 2, -10, 0.5, -4, 0] }}
-                transition={{ duration: 0.72, times: [0, 0.22, 0.42, 0.6, 0.75, 0.87, 1], ease: ['easeOut', 'easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'] }}
+                className="rounded-md bg-[#229ED9] p-3 text-white"
+                hoverAnim={{ y: [0, -18, 2, -10, 0.5, -4, 0] }}
+                hoverTransition={{ duration: 0.72, times: [0, 0.22, 0.42, 0.6, 0.75, 0.87, 1], ease: ['easeOut', 'easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'] }}
               >
                 <p className="flex items-center gap-1.5 text-sm font-semibold">
-                  <Link2 size={14} />
-                  LinkedIn
+                  <Send size={14} />
+                  Telegram
                 </p>
-                <p className="text-xs opacity-90">Professional network</p>
-              </motion.a>
+                <p className="text-xs opacity-90">t.me/isonnymichael</p>
+              </HoverAnimCard>
+              <HoverAnimCard
+                href={profileData.discord}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-md bg-[#5865F2] p-3 text-white"
+                hoverAnim={{ y: [0, -18, 2, -10, 0.5, -4, 0] }}
+                hoverTransition={{ duration: 0.72, times: [0, 0.22, 0.42, 0.6, 0.75, 0.87, 1], ease: ['easeOut', 'easeIn', 'easeOut', 'easeIn', 'easeOut', 'easeIn'] }}
+              >
+                <p className="flex items-center gap-1.5 text-sm font-semibold">
+                  <MessageSquare size={14} />
+                  Discord
+                </p>
+                <p className="text-xs opacity-90">discord.com/users/isonnymichael</p>
+              </HoverAnimCard>
             </div>
           </SectionCard>
         </main>
