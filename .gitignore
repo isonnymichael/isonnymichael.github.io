@@ -23,3 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# GitHub Pages — build-time generated data (do not commit)
+public/github-user.json
+public/github-repos.json
+public/github-languages.json
+public/github-contributions.json
+public/github-prs.json

@@ -12,7 +12,6 @@ import {
 import profilePicture from './assets/images/profile-picture.jpg'
 
 const githubUsername = 'isonnymichael'
-const githubToken = import.meta.env.VITE_GITHUB_TOKEN
 
 const profileLinks = {
   github: `https://github.com/${githubUsername}`,
@@ -22,13 +21,6 @@ const profileLinks = {
   discord: 'https://discord.com/users/isonnymichael',
 }
 
-const repositoryAvatar = 'https://avatars.githubusercontent.com/u/24585708?v=4'
-
-const contributionUrls = [
-  'https://github.com/KiiChain/kiijs-sdk/pull/36',
-  'https://github.com/KiiChain/kiijs-sdk/pull/39',
-  'https://github.com/KiiChain/kiijs-sdk/pull/44',
-]
 
 const deviconBase = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons'
 const simpleIcons = 'https://cdn.simpleicons.org'
@@ -347,84 +339,32 @@ function App() {
   const REPO_CARDS_PER_PAGE = 3
 
   useEffect(() => {
-    const githubHeaders = githubToken
-      ? {
-        Authorization: `Bearer ${githubToken}`,
-      }
-      : undefined
-
-    const parsePullUrl = (url) => {
-      const parts = new URL(url).pathname.split('/').filter(Boolean)
-      return { owner: parts[0], repo: parts[1], number: parts[3] }
-    }
-
     const loadGitHubData = async () => {
       setIsLoading(true)
       try {
-        const userResponse = await fetch(`https://api.github.com/users/${githubUsername}`, {
-          headers: githubHeaders,
-        })
-        const user = userResponse.ok ? await userResponse.json() : null
+        const [userRes, reposRes, languagesRes, contributionsRes, prsRes] =
+          await Promise.allSettled([
+            fetch('/github-user.json'),
+            fetch('/github-repos.json'),
+            fetch('/github-languages.json'),
+            fetch('/github-contributions.json'),
+            fetch('/github-prs.json'),
+          ])
+
+        const ok = (result) => result.status === 'fulfilled' && result.value.ok
+
+        const user = ok(userRes) ? await userRes.value.json() : null
         if (user) {
-          setProfileData({
-            name: user.name || 'Sonny Michael Wijaya',
-            ...profileLinks,
-          })
+          setProfileData({ name: user.name || 'Sonny Michael Wijaya', ...profileLinks })
         }
 
-        const allRepos = []
-        let page = 1
-        while (true) {
-          const repoResponse = await fetch(
-            `https://api.github.com/users/${githubUsername}/repos?per_page=100&page=${page}&sort=updated`,
-            { headers: githubHeaders },
-          )
-          const repoJson = repoResponse.ok ? await repoResponse.json() : []
-          if (!Array.isArray(repoJson) || repoJson.length === 0) {
-            break
-          }
-          allRepos.push(...repoJson)
-          if (repoJson.length < 100) {
-            break
-          }
-          page += 1
-        }
+        const repos = ok(reposRes) ? await reposRes.value.json() : []
+        setRepoCards(repos)
 
-        const normalizedRepos = allRepos
-          .filter((repo) => !repo.fork && repo.visibility === 'public')
-          .map((repo) => ({
-            name: repo.name,
-            fullName: repo.full_name,
-            description: repo.description || 'No description',
-            stars: repo.stargazers_count || 0,
-            forks: repo.forks_count || 0,
-            issues: repo.open_issues_count || 0,
-            contributors: 1,
-            url: repo.html_url,
-            avatarUrl: repo.owner?.avatar_url || repositoryAvatar,
-            languagesUrl: repo.languages_url,
-          }))
-          .sort((first, second) => second.stars - first.stars)
-
-        setRepoCards(normalizedRepos)
-
-        const languageResponses = await Promise.all(
-          normalizedRepos.map((repo) => fetch(repo.languagesUrl, { headers: githubHeaders })),
-        )
-        const languageJsonList = await Promise.all(
-          languageResponses.map((response) => (response.ok ? response.json() : {})),
-        )
-
-        const languageTotals = languageJsonList.reduce((accumulator, repoLanguages) => {
-          Object.entries(repoLanguages || {}).forEach(([name, bytes]) => {
-            accumulator[name] = (accumulator[name] || 0) + bytes
-          })
-          return accumulator
-        }, {})
-
-        const totalBytes = Object.values(languageTotals).reduce((sum, value) => sum + value, 0)
+        const languageTotals = ok(languagesRes) ? await languagesRes.value.json() : {}
+        const totalBytes = Object.values(languageTotals).reduce((sum, val) => sum + val, 0)
         const mappedLanguages = Object.entries(languageTotals)
-          .sort((first, second) => second[1] - first[1])
+          .sort((a, b) => b[1] - a[1])
           .slice(0, 6)
           .map(([name, bytes]) => ({
             name,
@@ -432,87 +372,13 @@ function App() {
           }))
         setLanguageItems(mappedLanguages)
 
-        const contributionPromises = contributionUrls.map(async (url) => {
-          const { owner, repo, number } = parsePullUrl(url)
-          const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/pulls/${number}`, {
-            headers: githubHeaders,
-          })
-          const pr = response.ok ? await response.json() : null
-          if (!pr) {
-            return null
-          }
-
-          return {
-            repoFullName: `${owner}/${repo}`,
-            number,
-            title: pr.title,
-            url: pr.html_url,
-            merged: pr.state === 'closed' && !!pr.merged_at,
-            comments: (pr.comments || 0) + (pr.review_comments || 0),
-            files: pr.changed_files || 0,
-            additions: pr.additions || 0,
-            deletions: pr.deletions || 0,
-            commits: pr.commits || 1,
-            authorLogin: pr.user?.login || owner,
-            authorAvatar: pr.user?.avatar_url || null,
-            updatedAt: pr.updated_at,
-          }
-        })
-
-        const contributions = (await Promise.all(contributionPromises)).filter(Boolean)
-        setContributionCards(contributions)
-
-        if (githubToken) {
-          const graphResponse = await fetch('https://api.github.com/graphql', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${githubToken}`,
-            },
-            body: JSON.stringify({
-              query: `query($login: String!) {
-                user(login: $login) {
-                  contributionsCollection {
-                    contributionCalendar {
-                      weeks {
-                        contributionDays {
-                          date
-                          contributionCount
-                        }
-                      }
-                    }
-                  }
-                }
-              }`,
-              variables: { login: githubUsername },
-            }),
-          })
-
-          const graphJson = graphResponse.ok ? await graphResponse.json() : null
-          const weeks = graphJson?.data?.user?.contributionsCollection?.contributionCalendar?.weeks || []
-          const calendarDots = weeks
-            .flatMap((week) => week.contributionDays || [])
-            .map((day) => day.contributionCount)
-          if (calendarDots.length > 0) {
-            setCommitDots(calendarDots.slice(-371))
-          }
-        } else {
-          const eventResponse = await fetch(`https://api.github.com/users/${githubUsername}/events/public?per_page=100`)
-          const events = eventResponse.ok ? await eventResponse.json() : []
-          const eventsByDay = events.reduce((accumulator, event) => {
-            const key = event.created_at.slice(0, 10)
-            accumulator[key] = (accumulator[key] || 0) + 1
-            return accumulator
-          }, {})
-          const today = new Date()
-          const dots = Array.from({ length: 371 }, (_, index) => {
-            const day = new Date(today)
-            day.setDate(today.getDate() - (370 - index))
-            const key = day.toISOString().slice(0, 10)
-            return eventsByDay[key] || 0
-          })
-          setCommitDots(dots)
+        const dots = ok(contributionsRes) ? await contributionsRes.value.json() : []
+        if (dots.length > 0) {
+          setCommitDots(dots.slice(-371))
         }
+
+        const prs = ok(prsRes) ? await prsRes.value.json() : []
+        setContributionCards(prs)
       } catch {
         setLanguageItems([
           { name: 'JavaScript', usage: '0.0%' },

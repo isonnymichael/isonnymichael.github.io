@@ -12,19 +12,28 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+
       - run: npm ci
+
+      - name: Fetch GitHub Data
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_PUBLIC_TOKEN }}
+        run: node scripts/fetch-github-data.js
+
       - run: npm run build
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
@@ -33,8 +42,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
