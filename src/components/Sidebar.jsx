@@ -28,7 +28,9 @@ function Sidebar({ profileData, languageItems }) {
         <h1 className="mt-3 text-center text-xl font-semibold text-slate-900 sm:text-2xl">
           {profileData.name}
         </h1>
-        <p className="mt-1 text-center text-sm text-slate-500">Let&apos;s connect and change the world!</p>
+        <p className="mt-1 text-center text-sm text-slate-500">
+          {new Date().getFullYear() - 2019}+ years of experience as a Software Engineer. Let's connect!
+        </p>
 
         <a
           href={profileLinks.github}
