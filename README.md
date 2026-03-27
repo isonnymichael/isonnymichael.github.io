@@ -1,16 +1,94 @@
-# React + Vite
+# isonnymichael.github.io
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website for Sonny Michael Wijaya — built with React, Vite, and Tailwind CSS. Deployed automatically to GitHub Pages via GitHub Actions.
 
-Currently, two official plugins are available:
+Live: [isonnymichael.github.io](https://isonnymichael.github.io)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+- **React 19** + **Vite**
+- **Tailwind CSS v4**
+- **Framer Motion** for animations
+- **GitHub Actions** for CI/CD and data fetching
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## How it works
 
-## Expanding the ESLint configuration
+GitHub data (repos, languages, contribution calendar, PRs) is fetched at **build time** using a GitHub token stored as a repository secret. The data is written to static JSON files in `public/` and bundled into the site — no token is ever shipped to the browser.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The workflow runs automatically on every push to `master` and once daily via cron to keep data fresh.
+
+## Project Structure
+
+```
+src/
+  App.jsx                       # Root layout
+  data/config.jsx               # Static config: links, stack, social items
+  hooks/useGitHubData.js        # Fetches pre-built GitHub JSON at runtime
+  components/
+    Sidebar.jsx                 # Profile, languages, tech stack
+    ContributionsSection.jsx    # Open source PR contributions
+    CommitsSection.jsx          # Contribution heatmap
+    RepositoriesSection.jsx     # Paginated repo cards
+    SocialSection.jsx           # Social media links
+    ContactSection.jsx          # Contact links
+    HoverAnimCard.jsx           # Animated card wrapper
+    SkeletonCard.jsx            # Loading skeleton
+    StackItem.jsx               # Tech icon with tooltip
+    SectionCard.jsx             # Section wrapper with header
+scripts/
+  fetch-github-data.js          # Build-time GitHub data fetcher
+.github/workflows/
+  deploy.yml                    # Build, fetch data, deploy to Pages
+```
+
+## Local Development
+
+**1. Clone and install**
+
+```bash
+git clone https://github.com/isonnymichael/isonnymichael.github.io.git
+cd isonnymichael.github.io
+npm install
+```
+
+**2. Create `.env.local` with your GitHub token**
+
+```
+GITHUB_TOKEN=your_github_pat_here
+```
+
+The token needs `public_repo` and `read:user` scopes. This file is gitignored.
+
+**3. Fetch GitHub data locally**
+
+```bash
+npm run fetch-data
+```
+
+This writes `public/github-*.json` files (also gitignored).
+
+**4. Start dev server**
+
+```bash
+npm run dev
+```
+
+## Deployment
+
+Deployment is fully automated. To set it up on your fork:
+
+1. Go to **Settings → Pages** and set source to **GitHub Actions**
+2. Add a secret at **Settings → Secrets → Actions** named `REPO_PUBLIC_TOKEN` with a GitHub PAT (`public_repo` + `read:user` scopes)
+3. Push to `master` — the workflow builds and deploys automatically
+
+The site rebuilds daily at midnight UTC to refresh GitHub stats.
+
+## Scripts
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start local dev server |
+| `npm run build` | Production build |
+| `npm run fetch-data` | Fetch GitHub data locally (requires `.env.local`) |
+| `npm run preview` | Preview production build locally |
+| `npm run lint` | Run ESLint |

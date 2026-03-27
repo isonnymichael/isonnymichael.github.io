@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "fetch-data": "node --env-file=.env.local scripts/fetch-github-data.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
