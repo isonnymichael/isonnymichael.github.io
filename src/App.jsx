@@ -13,15 +13,17 @@ function App() {
 
   return (
     <motion.main
-      className="relative min-h-screen overflow-hidden bg-white text-slate-800"
+      className="relative min-h-screen overflow-x-hidden bg-white text-slate-800"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.25 }}
     >
       <div className="grid-bg absolute inset-0" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-[1320px] gap-4 px-4 py-5 md:grid-cols-[320px_1fr] md:px-6">
-        <Sidebar profileData={profileData} languageItems={languageItems} />
+      <div className="relative z-10 mx-auto grid w-full max-w-[1320px] gap-4 px-4 py-5 md:grid-cols-[320px_1fr] md:items-start md:px-6">
+        <div className="md:sticky md:top-5">
+          <Sidebar profileData={profileData} languageItems={languageItems} />
+        </div>
 
         <div className="space-y-4">
           <ContributionsSection contributionCards={contributionCards} isLoading={isLoading} />

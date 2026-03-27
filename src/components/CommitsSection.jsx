@@ -38,7 +38,7 @@ function CommitsSection({ commitDots }) {
               )
             })}
           </div>
-          <div className="mt-3 flex items-center justify-between text-xs text-slate-500">
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
             <span>Total Contributions: {commitDots.reduce((a, b) => a + b, 0)}</span>
             <span className="flex items-center gap-1.5">
               Less

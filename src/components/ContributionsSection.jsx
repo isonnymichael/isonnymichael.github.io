@@ -74,7 +74,7 @@ function ContributionCard({ c }) {
           </span>
         </div>
 
-        <div className="mt-auto flex items-center gap-2 pt-2 text-[11px] text-slate-500">
+        <div className="mt-auto flex flex-wrap items-center gap-2 pt-2 text-[11px] text-slate-500">
           <img
             src={c.authorAvatar}
             alt={c.authorLogin}

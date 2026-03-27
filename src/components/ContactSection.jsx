@@ -12,7 +12,7 @@ const BOUNCE_TRANSITION = {
 function ContactSection({ profileData }) {
   return (
     <SectionCard title="Contact">
-      <div className="grid gap-2 sm:grid-cols-3">
+      <div className="grid gap-2 grid-cols-1 sm:grid-cols-3">
         <HoverAnimCard
           href={profileData.email}
           className="rounded-md bg-sky-600 p-3 text-white"
