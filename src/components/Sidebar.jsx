@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ExternalLink, ChevronDown } from 'lucide-react'
+import { ExternalLink, ChevronDown, FileText } from 'lucide-react'
 import profilePicture from '../assets/images/profile-picture.jpg'
 import { profileLinks, stackRows, languageColorMap } from '../data/config'
 import StackItem from './StackItem'
@@ -31,6 +31,18 @@ function Sidebar({ profileData, languageItems }) {
         <p className="mt-1 text-center text-sm text-slate-500">
           {new Date().getFullYear() - 2019}+ years of experience as a Software Engineer. Let's connect!
         </p>
+
+        <div className="mt-5 flex justify-center pb-2">
+          <a
+            href={profileLinks.cv}
+            target="_blank"
+            rel="noreferrer"
+            className="group flex items-center gap-2 rounded-full bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_8px_30px_-10px_rgba(37,99,235,0.4)] hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-[0_8px_30px_-6px_rgba(37,99,235,0.5)] transition-all active:scale-95"
+          >
+            <FileText size={18} className="transition-transform group-hover:scale-110 group-hover:rotate-3" />
+            View CV
+          </a>
+        </div>
 
         <a
           href={profileLinks.github}

@@ -3,6 +3,7 @@ export const githubUsername = 'isonnymichael'
 export const profileLinks = {
   github: `https://github.com/${githubUsername}`,
   linkedIn: 'https://www.linkedin.com/in/sonny-michael-95723512a/',
+  cv: 'https://drive.google.com/file/d/1kUlIbbhiQ-h-lk1fEWXdZzLKENFLD1_x/view?usp=sharing',
   email: 'mailto:isonnymichael@gmail.com',
   telegram: 'https://t.me/isonnymichael',
   discord: 'https://discord.com/users/isonnymichael',
