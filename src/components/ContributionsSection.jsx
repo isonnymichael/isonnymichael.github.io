@@ -1,8 +1,12 @@
-import { Code2 } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronLeft, ChevronRight, Code2 } from 'lucide-react'
 import { monthNames } from '../data/config'
 import HoverAnimCard from './HoverAnimCard'
 import SkeletonCard from './SkeletonCard'
 import SectionCard from './SectionCard'
+
+const CONTRIBUTION_CARDS_PER_PAGE = 3
 
 const BOUNCE_ANIM = { y: [0, -18, 2, -10, 0.5, -4, 0] }
 const BOUNCE_TRANSITION = {
@@ -96,14 +100,91 @@ function ContributionCard({ c }) {
 }
 
 function ContributionsSection({ contributionCards, isLoading }) {
+  const [slideIndex, setSlideIndex] = useState(0)
+  const [slideDirection, setSlideDirection] = useState(1)
+
+  const totalPages = Math.ceil(contributionCards.length / CONTRIBUTION_CARDS_PER_PAGE)
+  const visibleCards = contributionCards.slice(
+    slideIndex * CONTRIBUTION_CARDS_PER_PAGE,
+    (slideIndex + 1) * CONTRIBUTION_CARDS_PER_PAGE,
+  )
+
+  const handlePrev = () => {
+    setSlideDirection(-1)
+    setSlideIndex((i) => Math.max(0, i - 1))
+  }
+
+  const handleNext = () => {
+    setSlideDirection(1)
+    setSlideIndex((i) => Math.min(totalPages - 1, i + 1))
+  }
+
   return (
     <SectionCard title="Contributions">
-      <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
-        {isLoading
-          ? Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={`skeleton-contribution-${i}`} />)
-          : contributionCards.map((c) => (
-              <ContributionCard key={`contribution-${c.repoFullName}-${c.number}`} c={c} />
+      <div className="relative overflow-hidden">
+        {isLoading ? (
+          <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
+            {Array.from({ length: CONTRIBUTION_CARDS_PER_PAGE }).map((_, i) => (
+              <SkeletonCard key={`skeleton-contribution-${i}`} />
             ))}
+          </div>
+        ) : (
+          <>
+            <AnimatePresence mode="wait" custom={slideDirection}>
+              <motion.div
+                key={slideIndex}
+                custom={slideDirection}
+                variants={{
+                  enter: (dir) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
+                  center: { x: 0, opacity: 1 },
+                  exit: (dir) => ({ x: dir > 0 ? '-100%' : '100%', opacity: 0 }),
+                }}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.28, ease: 'easeInOut' }}
+                className="grid gap-2 sm:grid-cols-2 md:grid-cols-3"
+              >
+                {visibleCards.map((c) => (
+                  <ContributionCard key={`contribution-${c.repoFullName}-${c.number}`} c={c} />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="mt-3 flex items-center justify-between">
+              <button
+                onClick={handlePrev}
+                disabled={slideIndex === 0}
+                className="flex h-7 w-7 items-center cursor-pointer justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-30"
+              >
+                <ChevronLeft size={14} />
+              </button>
+
+              <div className="flex gap-1.5">
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <button
+                    key={`dot-${i}`}
+                    onClick={() => {
+                      setSlideDirection(i > slideIndex ? 1 : -1)
+                      setSlideIndex(i)
+                    }}
+                    className={`h-1.5 rounded-full transition-all ${
+                      i === slideIndex ? 'w-4 bg-blue-500' : 'w-1.5 bg-slate-200 hover:bg-slate-300'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={handleNext}
+                disabled={slideIndex >= totalPages - 1}
+                className="flex h-7 w-7 items-center cursor-pointer justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-30"
+              >
+                <ChevronRight size={14} />
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </SectionCard>
   )

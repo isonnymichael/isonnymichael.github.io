@@ -10,9 +10,19 @@ const token = process.env.GITHUB_TOKEN
 const headers = token ? { Authorization: `Bearer ${token}` } : {}
 
 const contributionUrls = [
+  'https://github.com/midudev/autoskills/pull/74',
   'https://github.com/KiiChain/kiijs-sdk/pull/36',
+  'https://github.com/KiiChain/kiichain-docs/pull/20',
   'https://github.com/KiiChain/kiijs-sdk/pull/39',
   'https://github.com/KiiChain/kiijs-sdk/pull/44',
+  'https://github.com/KiiChain/kiijs-sdk/pull/22',
+  'https://github.com/KiiChain/kiijs-sdk/pull/30',
+  'https://github.com/KiiChain/kiijs-sdk/pull/31',
+  'https://github.com/KiiChain/kiijs-sdk/pull/32',
+  'https://github.com/KiiChain/kiijs-sdk/pull/33',
+  'https://github.com/KiiChain/kiijs-sdk/pull/34',
+  'https://github.com/KiiChain/kiijs-sdk/pull/38',
+  'https://github.com/KiiChain/kiijs-sdk/pull/43',
 ]
 
 async function fetchJSON(url, options = {}) {
