@@ -127,28 +127,27 @@ const parsePullUrl = (url) => {
   return { owner: parts[0], repo: parts[1], number: parts[3] }
 }
 
-const prs = await Promise.all(
-  contributionUrls.map(async (url) => {
-    const { owner, repo, number } = parsePullUrl(url)
-    const pr = await fetchJSON(`https://api.github.com/repos/${owner}/${repo}/pulls/${number}`)
-    if (!pr) return null
-    return {
-      repoFullName: `${owner}/${repo}`,
-      number,
-      title: pr.title,
-      url: pr.html_url,
-      merged: pr.state === 'closed' && !!pr.merged_at,
-      comments: (pr.comments || 0) + (pr.review_comments || 0),
-      files: pr.changed_files || 0,
-      additions: pr.additions || 0,
-      deletions: pr.deletions || 0,
-      commits: pr.commits || 1,
-      authorLogin: pr.user?.login || owner,
-      authorAvatar: pr.user?.avatar_url || null,
-      updatedAt: pr.updated_at,
-    }
-  }),
-)
+const prs = []
+for (const url of contributionUrls) {
+  const { owner, repo, number } = parsePullUrl(url)
+  const pr = await fetchJSON(`https://api.github.com/repos/${owner}/${repo}/pulls/${number}`)
+  if (!pr) { prs.push(null); continue }
+  prs.push({
+    repoFullName: `${owner}/${repo}`,
+    number,
+    title: pr.title,
+    url: pr.html_url,
+    merged: pr.state === 'closed' && !!pr.merged_at,
+    comments: (pr.comments || 0) + (pr.review_comments || 0),
+    files: pr.changed_files || 0,
+    additions: pr.additions || 0,
+    deletions: pr.deletions || 0,
+    commits: pr.commits || 1,
+    authorLogin: pr.user?.login || owner,
+    authorAvatar: pr.user?.avatar_url || null,
+    updatedAt: pr.updated_at,
+  })
+}
 writeFileSync(join(publicDir, 'github-prs.json'), JSON.stringify(prs.filter(Boolean)))
 
 console.log('All GitHub data fetched successfully.')
