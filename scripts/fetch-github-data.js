@@ -10,6 +10,7 @@ const token = process.env.GITHUB_TOKEN
 const headers = token ? { Authorization: `Bearer ${token}` } : {}
 
 const contributionUrls = [
+  'https://github.com/KiiChain/kiijs-sdk/pull/65',
   'https://github.com/midudev/autoskills/pull/74',
   'https://github.com/KiiChain/kiijs-sdk/pull/36',
   'https://github.com/KiiChain/kiichain-docs/pull/20',
